@@ -5,39 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <main class="mobile">
     <section class="total">
-        <p>Total</p>
-        <p>$4,33,460</p>
+        <p>August</p>
+        <p id="total">total</p>
         <p>(50 trans)</p>
     </section>
     <section class="circle">
         <div>
-            <p>50<span>/52</span></p>
+            <p id="trans">trans</p>
             <p>Transactions</p>
         </div>
     </section>
     <section class="container">
-        <!-- <div class="item">
-            <div>
-                <span>Today</span>
-                <p>$1.5K</p>
-                <div>0.5K  payed</div>
-            </div>
-            <div>
-                <span>Transactions</span>
-                <p>5</p>
-                <div>5 payed </div>
-            </div>
-            <div>
-                <span>balance</span>
-                <p>$ 18.5K</p>
-                <div>dept/advance</div>
-            </div>
-        </div> -->
         <div class="item">
             <div>
                 <span>Total</span>
@@ -75,11 +59,27 @@
     </section>
     <section class="balance">
         <p>Balance</p>
-        <p>$4,33,460</p>
-        <p>($120000)</p>
+        <p id="balance">₹999999</p>
+        <p id="deposited">(₹9999)</p>
     </section>
 </main>
+<script>
 
+
+       axios.get("https://script.google.com/macros/s/AKfycbw9DLMlrxtjskXrGtUBr_awlqJF8rCKrLIBdA_7ND8e9dUgrjBx4GAxe-CWE88r5UVLwA/exec") 
+       .then(data => {
+        data = data.data
+        console.log(data.data);
+        document.getElementById('total').innerHTML=`₹${data.total}`
+        document.getElementById('trans').innerHTML=data.trans
+        document.getElementById('deposited').innerHTML=`₹(${data.deposited})`
+        document.getElementById('balance').innerHTML=`₹${data.balance}`
+    })
+    .catch((err) => {
+           console.log(err);
+       })
+
+ </script>
 
 <script src="./js/script.js"></script>
 </body>
